@@ -1,7 +1,5 @@
 package org.jabref.logic.formatter.bibtexfields;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,14 +26,13 @@ public class CleanupUrlFormatter extends Formatter {
 
     @Override
     public String format(String value) {
-        String decodedLink = value;
         String toDecode = value;
 
         Matcher matcher = PATTERN_URL.matcher(value);
         if (matcher.find()) {
             toDecode = matcher.group(1);
         }
-        return URLDecoder.decode(toDecode, StandardCharsets.UTF_8);
+        return toDecode;
     }
 
     @Override
